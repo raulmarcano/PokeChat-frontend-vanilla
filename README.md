@@ -5,7 +5,7 @@ PokeChat functions as a modernized AI-powered version of the Pokedex, that serve
 
 ## Demo
 
-[Demo Image](img/DEMO.png)
+![Demo Image](img/DEMO.png)
 
 
 ## Features
