@@ -16,19 +16,28 @@ document.addEventListener("DOMContentLoaded", () => {
         const typingHTML = `<div class="typing"><span>.</span><span>.</span><span>.</span></div>`;
         const loadingMessage = addMessageToChat("bot", typingHTML, true);
 
+        // Obtener el resp_id actual
+        const respIdElement = document.querySelector('.resp_id');
+        const currentRespId = respIdElement?.textContent?.trim() ?? "";
+
         //Llamada al backend
         fetch("http://localhost:8000/chat", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ message: userMessage })
+            body: JSON.stringify({ message: userMessage, resp_id: currentRespId })
         })
         .then(response => response.json())
         .then(data => {
-            const botResponse = data.response;
+            const botResponse = formatBoldText(data.response);
+            const newRespId = data.response_id;
             // Reemplaza el mensaje de "cargando"
-            loadingMessage.textContent = botResponse;
+            loadingMessage.innerHTML = botResponse;
+            // Si viene un nuevo response_id, actualizar el resp_id en el DOM
+            if (newRespId && respIdElement) {
+                respIdElement.textContent = newRespId;
+        }
         })
         .catch(error => {
             console.error("Error al comunicarse con el backend:", error);
@@ -36,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
     
-
     // Enviar al presionar el botón
     sendBtn.addEventListener("click", (e) => {
         e.preventDefault(); // evita que se recargue la página
@@ -51,9 +59,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Elimina todos los mensajes (este botón debe existir en tu HTML)
+    // Borrar memoria
     clearBtn.addEventListener("click", () => {
-        chatWindow.innerHTML = ""; // Elimina todos los mensajes
+        
+        // Elimina todos los mensajes, pero no el div resp_id
+        const messages = chatWindow.querySelectorAll('.chat_message');
+        messages.forEach(message => {
+            message.remove(); // Elimina cada mensaje, pero no el div resp_id
+        });
+        
+        // Si respIdElement existe, vacíalo pero mantenlo en el DOM
+        const respIdElement = document.querySelector('.resp_id');
+        if (respIdElement) {
+            respIdElement.textContent = ""; // Vacía el contenido de resp_id
+        }
     });
 
     // Función para agregar el mensaje al chat
@@ -69,5 +88,9 @@ document.addEventListener("DOMContentLoaded", () => {
         chatWindow.scrollTop = chatWindow.scrollHeight;
         return msgDiv;
     }
+    //Función para parsear texto en negrita 
+    const formatBoldText = (text) => {
+        return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    };
     
 });
