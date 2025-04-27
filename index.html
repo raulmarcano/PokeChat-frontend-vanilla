@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link   rel="icon" href="./img/pokebola.webp">
+    <link rel="stylesheet" href="./css/style.css">
+    <script defer src="./js/script.js"></script>
+    <title>PokédexGPT</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <main>
+        <div class="pokedex-light light-1"></div>
+        <div class="pokedex-light light-2"></div>        
+        <div class="pokedex-screen">
+            <div class="chat_window" id="chatWindow">
+                <!-- Aquí aparecerán los mensajes -->
+                <div class="chat_message user">¿Cuál es el Pokémon más fuerte?</div>
+                <div class="chat_message bot">Muchos consideran a Mewtwo como uno de los más poderosos.</div>
+            </div>
+        </div>
+    
+        <form class="form" id="chatForm">
+            <textarea 
+                class="chat_input"
+                id="chatInput"
+                placeholder="Pregúntame sobre cualquier Pokémon"
+                required
+                rows="4"
+            ></textarea>
+        </form>
+        
+        <div class="buttons">
+            <button class="button btn" id="sendBtn">enviar</button>
+            <button id="clearBtn" class="clear-btn"><i class="fas fa-trash"></i></button>
+        </div>
+        <picture>
+            <source srcset="./img/pokedex_small.png" media="(max-width: 680px), (max-height: 1100px)">
+            <img src="./img/pokedex.png" alt="pokedex" class="pokedex">
+          </picture>    
+    </main>
+    
+
+</body>
+</html>     

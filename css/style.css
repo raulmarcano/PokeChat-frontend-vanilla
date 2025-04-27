@@ -1,0 +1,317 @@
+/* ------------------------------
+   IMPORTAR FUENTE GAMEBOY STYLE
+---------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+/* ------------------------------
+   RESETEO Y TIPOGRAFÍA GLOBAL
+---------------------------------*/
+/* Reset de márgenes y padding, box-sizing para todos los elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'VT323', monospace;
+    font-size: 1.1rem;
+}
+
+/* Estilo del body, fondo con gradiente y texto centrado */
+body {
+    text-align: center;
+    background: linear-gradient(to bottom, #6adef5, #6bdc45);
+    min-height: 100vh;
+}
+
+/* ------------------------------
+   CONTENEDOR PRINCIPAL
+---------------------------------*/
+/* Centrado del contenedor principal */
+main {
+    display: inline-block;
+    margin-top: 2%;
+    padding: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* ------------------------------
+   FORMULARIO Y ENTRADA DE CHAT
+---------------------------------*/
+/* Estilo del contenedor del formulario */
+.form {
+    position: absolute;
+    width: 65%;
+    top: 65%;
+    left: 13.5%;
+}
+
+/* Estilo de la caja de entrada de texto */
+.chat_input {
+    width: 100%;
+    padding: 4%;
+    outline: none;
+    border: 2px solid #333;
+    border-radius: 5px;
+    font-weight: 600;
+    color: #3a444d;
+    font-size: clamp(8px, 5vw, 1rem);
+    box-shadow: -3px 4px 0 #888, -5px 7px 0 #333;
+    resize: none;
+}
+
+/* Estilo para la scrollbar dentro de la entrada de texto */
+.chat_input::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat_input::-webkit-scrollbar-thumb {
+    background: #98000056;
+    border-radius: 4px;
+}
+
+.chat_input::-webkit-scrollbar-track {
+    background: none;
+}
+
+/* ------------------------------
+   BOTONES DE CONTROL
+---------------------------------*/
+/* Contenedor de los botones de control (Send y Clear) */
+.buttons {
+    position: absolute;
+    bottom: 10%;
+    left: 25%;
+    width: 55%;
+    transform: translate(-5%, -5%);
+    display: flex;
+    justify-content: space-between; /* Alinea los botones */
+    align-items: center; /* Centra los botones verticalmente */
+}
+
+/* Estilo general de los botones */
+.button {
+    width: 45%;
+    padding: 10px 30px; /* 10px horizontal, 30px vertical */
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-size: clamp(8px, 5vw, 1rem);
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #444;
+    box-shadow: -2px 3px 0 #222, -4px 6px 0 #000;
+    font-size: 1.4rem;
+}
+
+/* Botón Send - centrado automáticamente */
+#sendBtn {
+    flex-grow: 0.9;
+    margin-right: 10px;
+}
+
+/* Estilo del botón Clear (con icono) */
+.clear-btn {
+    padding: 5px;
+    font-size: 20px;
+    color: #b9b9b9;
+    background: transparent;
+    cursor: pointer;
+    transition: transform 0.2s;
+    border-radius: 5px;
+    background-color: #444;
+    border: 2px solid #000;
+    box-shadow: -2px 3px 0 #222, -4px 6px 0 #000;
+}
+
+/* Efecto hover para los botones */
+.buttons button:hover {
+    background-color: #616161;
+}
+
+/* ------------------------------
+   LUCES PARPADEANTES
+---------------------------------*/
+/* Estilo de las luces parpadeantes (como en la Pokedex) */
+.pokedex-light {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #e10000;
+    border-radius: 50%;
+    box-shadow: 0 0 25px red;
+    z-index: 10;
+}
+
+/* Luces parpadeantes con animación */
+.pokedex-light.light-1 {
+    top: 24.6%;
+    left: 48.4%;
+    animation: blink 0.8s infinite;
+}
+
+.pokedex-light.light-2 {
+    top: 24.6%;
+    left: 41.4%;
+    animation: blink 0.3s infinite;
+}
+
+/* Animación de parpadeo */
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 10px red;
+    }
+    50% {
+        opacity: 0.2;
+        box-shadow: 0 0 2px red;
+    }
+}
+
+
+/* ------------------------------
+   PANTALLA DE LA POKEDEX
+---------------------------------*/
+/* Estilo del contenedor de la pantalla de la Pokedex */
+.pokedex-screen {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-55%, -95%);
+    width: 60%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+/* ------------------------------
+   VENTANA DEL CHAT
+---------------------------------*/
+/* Estilo para la ventana de chat */
+.chat_window {
+    width: 100%;
+    height: 100%;
+    background-color: #444;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding-bottom: 5px;
+    border: 2px solid #000000;
+}
+
+/* Scrollbar en ventana del chat */
+.chat_window::-webkit-scrollbar {
+    width: 6px;
+    padding-left: 10px;
+    margin-left: 10px;
+}
+
+.chat_window::-webkit-scrollbar-thumb {
+    background: #b0b3ad56;
+    border-radius: 8px;
+}
+
+.chat_window::-webkit-scrollbar-track {
+    background: none;
+}
+
+/* ------------------------------
+   MENSAJES DE CHAT
+---------------------------------*/
+/* Estilo de los mensajes de chat */
+.chat_message {
+    padding: 8px 12px;
+    border-radius: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+    margin-top: 5px;
+}
+
+/* Estilo de los mensajes del usuario */
+.chat_message.user {
+    background-color: #fbfafa;
+    color: #3a444d;
+    align-self: flex-end;
+    margin-right: 3px;
+}
+
+/* Estilo de los mensajes del bot */
+.chat_message.bot {
+    background-color: #cbdce030;
+    color: #f1f1f1;
+    align-self: flex-start;
+    margin-left: 3px;
+}
+
+/* ------------------------------------
+   ESTILOS PARA ANIMACIÖN ESCRIBIENDO
+--------------------------------------*/
+
+.typing {
+    display: inline-block;
+    font-size: 16px;
+    color: #f1f1f1;
+  }
+  
+  .typing span {
+    display: inline-block;
+    animation: blink 1.5s infinite;
+  }
+  
+  .typing span:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .typing span:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  
+  @keyframes blink {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+/* ------------------------------
+   ESTILOS PARA PANTALLAS > 680px
+---------------------------------*/
+/* Estilos específicos para pantallas mayores a 680px */
+@media screen and (min-width: 680px) and (min-height: 1100px) {
+    * {
+        font-size: 1.2rem;
+    }
+
+    /* Tamaño de fuente más grande para los botones */
+    .button {
+        font-size: 1.6rem;
+    }
+
+    /* Tamaño de fuente más grande para la entrada de chat */
+    .chat_input {
+        font-size: 1.3rem;
+    }
+
+    /* Tamaño de fuente para los mensajes de chat */
+    .chat_message {
+        font-size: 1.3rem;
+    }
+
+   /* LUCES PARPADEANTES (pantallas grandes) */
+   .pokedex-light {
+        width: 10px;
+        height: 10px;
+        background-color: #ff0000dc;
+        box-shadow: 0 0 80px red;
+        transform: translate(-7%, -25%)
+   }
+
+   /* Tamaño de la caja de entrada en pantallas grandes */
+   .chat_input {
+        padding: 30px;
+    }
+}
+
+
+  
